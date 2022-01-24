@@ -12,9 +12,6 @@ var start = 1;
 
 env = require("config.json")
 
-
-const CLIENT = new TalkClient();
-
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
 const DEVICE_PW = env.PW
