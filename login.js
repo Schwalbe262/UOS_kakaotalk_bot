@@ -10,7 +10,7 @@ const { AuthApiClient, ChatBuilder, KnownChatType, MentionContent, ReplyContent,
 
 var start = 1;
 
-env = reqruie("config.json")
+env = require("config.json")
 
 
 const CLIENT = new TalkClient();
