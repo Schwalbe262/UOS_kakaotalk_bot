@@ -10,12 +10,12 @@ const { AuthApiClient, ChatBuilder, KnownChatType, MentionContent, ReplyContent,
 
 var start = 1;
 
-env = require("config.json")
+env = require("../config.json")
 
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
 const DEVICE_PW = env.PW
-const DEVICE_NAME = "device"
+const DEVICE_NAME = "UOS_kakaotalk_bot"
 
 const CLIENT = new TalkClient();
 
