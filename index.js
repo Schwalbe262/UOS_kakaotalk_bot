@@ -10,7 +10,10 @@ const { AuthApiClient, ChatBuilder, KnownChatType, MentionContent, ReplyContent,
 
 var start = 1;
 
-env = require("../config.json")
+env = require("./config.json")
+
+// module
+db_main = new sqlite3.Database('./DB/DB_main')
 
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
