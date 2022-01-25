@@ -13,7 +13,7 @@ var start = 1;
 env = require("./config.json")
 
 // module
-db_main = new sqlite3.Database('./DB/DB_main')
+const DB = require("./modules/DB.js")
 
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
