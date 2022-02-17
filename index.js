@@ -41,8 +41,8 @@ CLIENT.on('chat', async(data, channel) => {
 
 
         if(start==1){ // 초기 구동
-            global.botChannel = CLIENT.channelManager.getChannelList().filter(v=>v.id==channel_params.botChannelId)[0]
-			global.noticeChannel = CLIENT.channelManager.getChannelList().filter(v=>v.id==channel_params.noticeChannelId)[0]
+            //global.botChannel = CLIENT.channelManager.getChannelList().filter(v=>v.id==channel_params.botChannelId)[0]
+			//global.noticeChannel = CLIENT.channelManager.getChannelList().filter(v=>v.id==channel_params.noticeChannelId)[0]
             start = 0
         }
 
