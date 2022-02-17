@@ -64,6 +64,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
         let pre_text = `일반공지 : ${title}`
         let header_title = "일반공지알림"
         let link = `http://www.uos.ac.kr/korNotice/view.do?list_id=FA1&seq=${address}&epTicket=INV`
+        let str = `일반공지 알림 : {title}\n보러가기 : link`
 
         browser = await puppeteer.launch({
             headless: false,
@@ -81,6 +82,8 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
             let picInfo = await imgSizeSync(buffer)
             await browser.close()
 
+            channel.sendChat(str)
+
             await channel.sendMedia(KnownChatType.PHOTO, {
                 name: "UOSP1.png",
                 data: buffer,
@@ -92,6 +95,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
         catch(e){
             console.log("UOSP1 image error : " + e)
             await browser.close()
+            channel.sendChat(str)
         }
 
 
