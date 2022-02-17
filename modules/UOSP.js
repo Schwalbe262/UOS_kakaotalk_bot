@@ -64,7 +64,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
         let pre_text = `일반공지 : ${title}`
         let header_title = "일반공지알림"
         let link = `http://www.uos.ac.kr/korNotice/view.do?list_id=FA1&seq=${address}&epTicket=INV`
-        let str = `일반공지 알림 : ${title}\n보러가기 : ${link}`
+        let str = `일반공지 알림 : ${title}\n\n보러가기 : ${link}`
 
         if (test==true){
             browser = await puppeteer.launch({
