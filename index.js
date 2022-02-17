@@ -24,22 +24,40 @@ const DEVICE_NAME = "UOS_kakaotalk_bot"
 const CLIENT = new TalkClient();
 
 
+const channel_params = {
+	botChannelId : "18241774633303097",
+	uosChannelId : "18207197078736373",
+	eceChannelId : "18292042557542096",
+	noticeChannelId : "18264784731796803", // 공지확인방
+	noticeChannelId2 : "18246775846233215", // 공지확인방2
+	catChannelId : "18285026996346343",
+	botMakeChannelId : "18284842349082092" // 시립대 봇제작방(newest)
+}
+
+
 CLIENT.on('chat', async(data, channel) => {
 
     try{
 
+
+        if(start==1){ // 초기 구동
+            global.botChannel = client.channelManager.getChannelList().filter(v=>v.id==channel_params.botChannelId)[0]
+			global.noticeChannel = client.channelManager.getChannelList().filter(v=>v.id==channel_params.noticeChannelId)[0]
+            start = 0
+        }
+
         const sender = data.getSenderInfo(channel);
-        if (!sender) return;
+        if(!sender) return;
 
         //==============================================================================================================
 		//=========================================== eval 코드 ========================================================
 		try {
-			if ( data.text.startsWith("<") ) {
+			if( data.text.startsWith("<") ) {
                 const funcBody = (await data.text).substr(1).trim().split('\n'); // 긴 코드 테스트를 위해 1천자 이상 경우에도 대응 (FullText 이용)
                 funcBody.push(`channel.sendChat(String(${funcBody.pop()}));`); // 함수의 마지막 줄 내용은 자동으로 출력
 				await eval(`(async() => {${funcBody.join('\n')}})();`); // 에러캐치를 위해 await까지 해준다.
 			}
-		} catch (e) {
+		} catch(e) {
 			channel.sendChat("Eval Response Error\n" + e + "\n===============\n메시지 : "+ data.Text)
 		}
 		//=========================================== eval 코드 끝======================================================
