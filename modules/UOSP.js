@@ -59,7 +59,7 @@ UOSP.UOSP1 = async function UOSP1(test=False){
     }
 
 
-    if (SW_new == 1 || test == True) {
+    if (SW_new == 1 || test == true) {
 
         let pre_text = `일반공지 : ${title}`
         let header_title = "일반공지알림"
