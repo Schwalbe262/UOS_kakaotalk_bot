@@ -64,7 +64,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
         let pre_text = `일반공지 : ${title}`
         let header_title = "일반공지알림"
         let link = `http://www.uos.ac.kr/korNotice/view.do?list_id=FA1&seq=${address}&epTicket=INV`
-        let str = `일반공지 알림 : {title}\n보러가기 : link`
+        let str = `일반공지 알림 : ${title}\n보러가기 : ${link}`
 
         browser = await puppeteer.launch({
             headless: false,
@@ -74,11 +74,11 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
         try{
             let page = await browser.newPage();
             await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
-            await page.setViewport({ width: 2000, height: 20000 })
+            await page.setViewport({ width: 2500, height: 20000 })
             //let buffer = await page.screenshot({ path: './images/RNDJM.png' })
             //let buffer = await page.screenshot()
             //let buffer = await (await page.$('div[id=wrap]')).screenshot()
-            let buffer = await (await page.$('div.view-bx')).screenshot()
+            let buffer = await (await page.$('div.s-container')).screenshot()
             let picInfo = await imgSizeSync(buffer)
             await browser.close()
 
