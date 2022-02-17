@@ -77,7 +77,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
             //let buffer = await page.screenshot({ path: './images/RNDJM.png' })
             //let buffer = await page.screenshot()
             //let buffer = await (await page.$('div[id=wrap]')).screenshot()
-            let buffer = await (await page.$('div.s-container')).screenshot()
+            let buffer = await (await page.$('div.view-bx')).screenshot()
             let picInfo = await imgSizeSync(buffer)
             await browser.close()
 
