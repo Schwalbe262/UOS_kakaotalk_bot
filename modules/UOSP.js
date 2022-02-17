@@ -66,10 +66,20 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
         let link = `http://www.uos.ac.kr/korNotice/view.do?list_id=FA1&seq=${address}&epTicket=INV`
         let str = `일반공지 알림 : ${title}\n보러가기 : ${link}`
 
-        browser = await puppeteer.launch({
-            headless: false,
-            args: ['--no-sandbox', '--disable-setuid-sandbox'],
-        });
+        if (test==true){
+            browser = await puppeteer.launch({
+                headless: false,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+        else{
+            browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+
+        
 
         try{
             let page = await browser.newPage();
