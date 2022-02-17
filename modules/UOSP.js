@@ -14,7 +14,7 @@ const { KnownChatType } = require('node-kakao');
 
 
 
-UOSP.UOSP1 = async function UOSP1(chat=chat,test=false){
+UOSP.UOSP1 = async function UOSP1(channel=channel,test=false){
 
     str = "";
     SW_new = 0;
