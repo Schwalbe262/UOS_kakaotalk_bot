@@ -46,6 +46,8 @@ CLIENT.on('chat', async(data, channel) => {
             start = 0
         }
 
+        global.CH = channel
+
         const sender = data.getSenderInfo(channel);
         if(!sender) return;
 
