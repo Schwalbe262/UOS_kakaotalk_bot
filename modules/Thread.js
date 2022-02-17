@@ -18,3 +18,6 @@ Thread.Thread_UOSP1 = async function Thread_UOSP1(){
         }
     }
 }
+
+
+module.exports = Thread
