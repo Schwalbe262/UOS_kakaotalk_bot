@@ -15,6 +15,7 @@ env = require("./config.json")
 // module
 const DB = require("./modules/DB.js")
 const UOSP = require("./modules/UOSP.js")
+const Thread = require("./modules/Thread.js")
 
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
@@ -43,6 +44,9 @@ CLIENT.on('chat', async(data, channel) => {
         if(start==1){ // 초기 구동
             global.botChannel = CLIENT.channelList.get(channel_params.botChannelId)
 			global.noticeChannel = CLIENT.channelList.get(channel_params.noticeChannelId)
+
+            Thread.Thread_UOSP1()
+            
             start = 0
         }
 
