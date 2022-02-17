@@ -14,6 +14,7 @@ env = require("./config.json")
 
 // module
 const DB = require("./modules/DB.js")
+const UOSP = require("./modules/UOSP.js")
 
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
