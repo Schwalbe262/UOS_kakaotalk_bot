@@ -72,7 +72,7 @@ UOSP.UOSP1 = async function UOSP1(test=False){
 
         try{
             let page = await browser.newPage();
-            await page.goto(link)
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
             await page.setViewport({ width: 2000, height: 20000 })
             //let buffer = await page.screenshot({ path: './images/RNDJM.png' })
             //let buffer = await page.screenshot()
