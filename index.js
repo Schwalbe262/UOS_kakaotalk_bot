@@ -89,3 +89,20 @@ async function main() {
     console.log("Login success")
 }
 main().then()
+
+
+
+
+Object.defineProperty(Object.prototype,"prop2",   {
+	get:function(){
+		var self=this;
+		return Object.getOwnPropertyNames(this).map(v=>{
+			try{
+				return v+" : "+self[v]
+			}catch(e){
+			}
+			return v+" : error"
+
+		}).join("\n");
+	}
+});
