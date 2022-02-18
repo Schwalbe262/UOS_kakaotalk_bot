@@ -14,7 +14,7 @@ const { KnownChatType } = require('node-kakao');
 
 
 
-UOSP.UOSP1 = async function UOSP1(test=false,channels=CH,headless=true){
+UOSP.UOSP1 = async function UOSP1(test=false,channels=noticeChannel,headless=true){
 
     str = "";
     SW_new = 0;
@@ -120,7 +120,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channels=CH,headless=true){
 
 
 
-UOSP.UOSP2 = async function UOSP2(test=false,channels=CH,headless=true){
+UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=true){
 
     str = "";
     SW_new = 0;
