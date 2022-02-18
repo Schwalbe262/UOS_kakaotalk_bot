@@ -6,7 +6,7 @@ const UOSP = require('./UOSP.js')
 
 Thread.Thread_UOSP1 = async function Thread_UOSP1(){
 
-    //botChannel.sendText("Thread_UOSP1 실행")
+    botChannel.sendText("Thread_UOSP1 실행")
 
     while(1){
         try{
