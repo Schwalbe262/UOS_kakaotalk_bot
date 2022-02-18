@@ -14,7 +14,7 @@ const { KnownChatType } = require('node-kakao');
 
 
 
-UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
+UOSP.UOSP1 = async function UOSP1(test=false,channels=CH){
 
     str = "";
     SW_new = 0;
@@ -92,9 +92,9 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
             let picInfo = await imgSizeSync(buffer)
             await browser.close()
 
-            channel.sendChat(str)
+            channels.sendChat(str)
 
-            await channel.sendMedia(KnownChatType.PHOTO, {
+            await channels.sendMedia(KnownChatType.PHOTO, {
                 name: "UOSP1.png",
                 data: buffer,
                 width: picInfo.width,
@@ -105,7 +105,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channel=CH){
         catch(e){
             console.log("UOSP1 image error : " + e)
             await browser.close()
-            channel.sendChat(str)
+            channels.sendChat(str)
         }
 
 
