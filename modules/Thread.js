@@ -11,10 +11,10 @@ Thread.Thread_UOSP1 = async function Thread_UOSP1(){
     while(1){
         try{
             await UOSP.UOSP1(channel=noticeChannel)
-            await Thread.sleep(300000)
+            await Thread.sleep(100000)
         }
         catch(e){
-            await Thread.sleep(300000)
+            await Thread.sleep(100000)
         }
     }
 }
