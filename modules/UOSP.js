@@ -14,7 +14,7 @@ const { KnownChatType } = require('node-kakao');
 
 
 
-UOSP.UOSP1 = async function UOSP1(test=false,channels=CH){
+UOSP.UOSP1 = async function UOSP1(test=false,channels=CH,headless=true){
 
     str = "";
     SW_new = 0;
@@ -66,7 +66,7 @@ UOSP.UOSP1 = async function UOSP1(test=false,channels=CH){
         let link = `http://www.uos.ac.kr/korNotice/view.do?list_id=FA1&seq=${address}&epTicket=INV`
         let str = `일반공지 알림 : ${title}\n\n보러가기 : ${link}`
 
-        if (test==true){
+        if (headless==false){
             browser = await puppeteer.launch({
                 headless: false,
                 args: ['--no-sandbox', '--disable-setuid-sandbox'],

@@ -11,6 +11,7 @@ Thread.Thread_UOSP1 = async function Thread_UOSP1(){
     while(1){
         try{
             await UOSP.UOSP1(channels=noticeChannel)
+            await UOSP.UOSP1(test=true,channels=botChannel)
             await Thread.sleep(100000)
         }
         catch(e){
