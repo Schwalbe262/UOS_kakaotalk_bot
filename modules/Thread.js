@@ -120,6 +120,8 @@ Thread.Thread_dept = async function Thread_dept(){
             await Thread.sleep(dept_time)
             try{await UOSP.dept_parsing(test=false,channels=noticeChannel,headless=true,dept="SPO",link="https://www.uos.ac.kr/artandsport/sports/korNotice/allList.do?list_id=artandsport01&seq=628&sort=0&pageIndex=1&searchCnd=&searchWrd=&viewAuth=Y&cate_id2=000010079&epTicket=LOG",dept_name="스포츠과학과")}catch(e){}
             await Thread.sleep(dept_time)
+            try{await UOSP.admin_parsing(test=false,channels=noticeChannel,headless=true,dept="ADMIN",link="https://biz.uos.ac.kr/korNotice/list.do?list_id=20008N2&epTicket=LOG",dept_name="경영학부")}catch(e){}
+            await Thread.sleep(dept_time)
         
         }
         catch(e){
