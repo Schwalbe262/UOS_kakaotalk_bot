@@ -2,12 +2,12 @@ Thread = new Object()
 
 const UOSP = require('./UOSP.js')
 
-test = false
-channels = null
-headless = true
-dept = ""
-dept_link = ""
-dept_name = ""
+let test = false
+let channels = null
+let headless = true
+let dept = ""
+let dept_link = ""
+let dept_name = ""
 
 
 
