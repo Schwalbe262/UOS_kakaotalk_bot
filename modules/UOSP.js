@@ -292,7 +292,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
             await page.click( "ul.clearfix>li.tb-wid02>a")
 
-            await UOSP.sleep(5000)
+            await UOSP.sleep(3000)
 
             let buffer = await (await page.$('div.sc-right')).screenshot()
             let picInfo = await imgSizeSync(buffer)
@@ -306,7 +306,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
                 ext: 'png'
             });
 
-            await channels.sendChat("test"))
+            await channels.sendChat("test")
         }
         catch(e){
             console.log("dept image error : " + e)
