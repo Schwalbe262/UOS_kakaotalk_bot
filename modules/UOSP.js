@@ -605,7 +605,7 @@ UOSP.admin_parsing = async function admin_parsing(test=false,channels=noticeChan
 
             await UOSP.sleep(3000)
 
-            let buffer = await (await page.$('div.sc-right')).screenshot()
+            let buffer = await (await page.$('div.contents')).screenshot()
             let picInfo = await imgSizeSync(buffer)
             await browser.close()
 
