@@ -290,7 +290,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
             UOSP.sleep(5000)
 
-            await page.click( "ul.clearfix>li.tb-wid02>a" , {waitUntil: 'networkidle2', timeout: 0})
+            await page.click( "ul.clearfix>li.tb-wid02>a")
 
             UOSP.sleep(10000)
 
