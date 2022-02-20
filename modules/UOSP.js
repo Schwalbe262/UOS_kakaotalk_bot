@@ -288,11 +288,11 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
             await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
 
-            UOSP.sleep(3000)
+            UOSP.sleep(5000)
 
             await page.click( "ul.clearfix>li.tb-wid02>a" , {waitUntil: 'networkidle2', timeout: 0})
 
-            UOSP.sleep(3000)
+            UOSP.sleep(10000)
 
             let buffer = await (await page.$('div.sc-right')).screenshot()
             let picInfo = await imgSizeSync(buffer)
