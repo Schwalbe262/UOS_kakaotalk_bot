@@ -228,8 +228,7 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
 // "https://www.uos.ac.kr/engineering/korNotice/allList.do?list_id=20013DA1&cate_id2=000010058&epTicket=INV" 전전컴
 
 
-UOSP.dept_parsing = function dept_parsing(test=false,channels=noticeChannel,headless=true,dept,link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
-
+UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChannel,headless=true,dept,link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
 
     let body = await ( await fetch(link,{
         headers: {
