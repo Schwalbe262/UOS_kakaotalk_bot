@@ -3,7 +3,7 @@ Thread = new Object()
 const UOSP = require('./UOSP.js')
 
 test = false
-channels = noticeChannel
+channels = null
 headless = true
 dept = ""
 dept_link = ""
