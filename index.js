@@ -37,7 +37,7 @@ const channel_params = {
 
 
 // 슈알이시
-const Admin = ["208049747","219226517","22698467"]
+const Admin = [208049747,219226517,22698467]
 
 
 CLIENT.on('chat', async(data, channel) => {
