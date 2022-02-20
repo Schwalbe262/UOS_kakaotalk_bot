@@ -286,11 +286,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
             let page = await browser.newPage();
             await page.setViewport({ width: 2500, height: 20000 })
 
-            //page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
-            await Promise.all([
-                page.goto(link),
-                page.waitForNavigation()
-            ])
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
 
             await page.click( "ul.clearfix>li.tb-wid02>a" , {waitUntil: 'networkidle2', timeout: 0})
 
