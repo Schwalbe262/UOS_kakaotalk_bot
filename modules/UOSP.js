@@ -284,8 +284,12 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
         try{
             let page = await browser.newPage();
             await page.setViewport({ width: 2500, height: 20000 })
-            page.waitForNavigation( await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 }) ), // goto가 되어야 click이 되게 한다
+
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
+        
             page.click( "ul.clearfix>li.tb-wid02>a" )
+            await page.waitForNavigation({waitUntil: 'load'})
+            
             let buffer = await (await page.$('div.sc-right')).screenshot()
             let picInfo = await imgSizeSync(buffer)
             await browser.close()
