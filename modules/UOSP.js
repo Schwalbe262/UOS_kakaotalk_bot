@@ -536,6 +536,105 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
 
 
+
+UOSP.admin_parsing = async function admin_parsing(test=false,channels=noticeChannel,headless=true,dept,link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
+
+    let SW_new = 0
+
+    let body = await ( await fetch(link,{
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
+        }
+    })).text()
+
+    let title_array = cheersoup(body).select("ul.listType>li:not(.on)>a").toArray().map(v=>v.text().split(" ").slice(1).join(" "))
+
+    let title = title_array[0]
+
+    // 파싱 에러 필터링
+    if (title == "" || title == "MIWIFI" || title == undefined) {
+        return 0;
+    }
+
+    // 이전 DB 불러오기 작업
+    let title_list = JSON.parse(await DB.getDB("title_"+dept)) // DB에 저장된 title list
+
+
+    try{
+        if(title_list.indexOf(title)){ // DB에 기록된내용이 없는지 감지
+
+            SW_new = 1
+
+            // DB 재기록작업
+            await DB.setDB("title_"+dept,JSON.stringify(title_array))
+
+        }
+    }
+    catch(e){
+
+    }
+
+
+    if (SW_new == 1 || test == true) {
+
+        let str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${link}`
+
+        if (headless==false){
+            browser = await puppeteer.launch({
+                headless: false,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+        else{
+            browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+
+
+        try{
+            let page = await browser.newPage();
+            await page.setViewport({ width: 2500, height: 20000 })
+
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
+
+            await UOSP.sleep(3000)
+
+            await page.click( "ul.listType>li:not(.on)>a" )
+
+            await UOSP.sleep(3000)
+
+            let buffer = await (await page.$('div.sc-right')).screenshot()
+            let picInfo = await imgSizeSync(buffer)
+            await browser.close()
+
+            await channels.sendMedia(KnownChatType.PHOTO, {
+                name: "UOS.png",
+                data: buffer,
+                width: picInfo.width,
+                height: 100,
+                ext: 'png'
+            });
+
+            await channels.sendChat(str)
+        }
+        catch(e){
+            console.log("dept image error : " + e)
+            await browser.close()
+            await channels.sendChat(str)
+        }
+
+
+
+
+    }
+        
+
+}
+
+
+
 UOSP.sleep = async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
     // await UOSP.sleep(1000)
