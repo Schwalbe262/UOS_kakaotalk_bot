@@ -307,6 +307,12 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
             });
 
             await channels.sendChat("test")
+            await UOSP.sleep(3000)
+            await channels.sendChat(dept_name)
+            await UOSP.sleep(3000)
+            await channels.sendChat(title)
+            await UOSP.sleep(3000)
+            await channels.sendChat(link)
         }
         catch(e){
             console.log("dept image error : " + e)
