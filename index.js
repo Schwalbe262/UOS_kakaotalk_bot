@@ -37,7 +37,7 @@ const channel_params = {
 
 
 // 슈알이시
-const Admin = [208049747,219226517,22698467]
+const Admin = ["208049747","219226517","22698467"]
 
 
 CLIENT.on('chat', async(data, channel) => {
@@ -64,7 +64,7 @@ CLIENT.on('chat', async(data, channel) => {
         //==============================================================================================================
 		//=========================================== eval 코드 ========================================================
 		try {
-			if( data.text.startsWith("<") && data.chat.sender.userId.mod(1<<30).indexOf(Admin) ) {
+			if( data.text.startsWith("<") && Admin.includes(+data.chat.sender.userId.mod(1<<30)) ) {
                 const funcBody = (await data.text).substr(1).trim().split('\n'); // 긴 코드 테스트를 위해 1천자 이상 경우에도 대응 (FullText 이용)
                 funcBody.push(`channel.sendChat(String(${funcBody.pop()}));`); // 함수의 마지막 줄 내용은 자동으로 출력
 				await eval(`(async() => {${funcBody.join('\n')}})();`); // 에러캐치를 위해 await까지 해준다.
