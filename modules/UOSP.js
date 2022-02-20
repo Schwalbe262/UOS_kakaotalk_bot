@@ -16,8 +16,8 @@ const { KnownChatType } = require('node-kakao');
 
 UOSP.UOSP1 = async function UOSP1(test=false,channels=noticeChannel,headless=true){
 
-    str = "";
-    SW_new = 0;
+    let str = "";
+    let SW_new = 0;
 
     let body = await ( await fetch("http://www.uos.ac.kr/korNotice/list.do?list_id=FA1",{
         headers: {
@@ -25,13 +25,13 @@ UOSP.UOSP1 = async function UOSP1(test=false,channels=noticeChannel,headless=tru
         }
     })).text()
 
-    title_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").text())
-    address_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").attr("href").split("'")[3])
-    publisher_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("span").text())
+    let title_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").text())
+    let address_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").attr("href").split("'")[3])
+    let publisher_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("span").text())
 
-    title = title_array[0]
-    address = address_array[0]
-    publisher = publisher_array[0]
+    let title = title_array[0]
+    let address = address_array[0]
+    let publisher = publisher_array[0]
 
     // 파싱 에러 필터링
     if (title == "" || title == "MIWIFI" || title == undefined) {
@@ -39,8 +39,8 @@ UOSP.UOSP1 = async function UOSP1(test=false,channels=noticeChannel,headless=tru
     }
 
     // 이전 DB 불러오기 작업
-    title_list = JSON.parse(await DB.getDB("UOSP1_last_title")) // DB에 저장된 title list
-    address_list = JSON.parse(await DB.getDB("UOSP1_last_address")) // DB에 저장된 title list
+    let title_list = JSON.parse(await DB.getDB("UOSP1_last_title")) // DB에 저장된 title list
+    let address_list = JSON.parse(await DB.getDB("UOSP1_last_address")) // DB에 저장된 title list
 
 
     try{
@@ -122,8 +122,8 @@ UOSP.UOSP1 = async function UOSP1(test=false,channels=noticeChannel,headless=tru
 
 UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=true){
 
-    str = "";
-    SW_new = 0;
+    let str = "";
+    let SW_new = 0;
 
     let body = await ( await fetch("http://www.uos.ac.kr/korNotice/list.do?list_id=FA2",{
         headers: {
@@ -131,13 +131,13 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
         }
     })).text()
 
-    title_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").text())
-    address_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").attr("href").split("'")[3])
-    publisher_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("span").text())
+    let title_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").text())
+    let address_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").attr("href").split("'")[3])
+    let publisher_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("span").text())
 
-    title = title_array[0]
-    address = address_array[0]
-    publisher = publisher_array[0]
+    let title = title_array[0]
+    let address = address_array[0]
+    let publisher = publisher_array[0]
 
     // 파싱 에러 필터링
     if (title == "" || title == "MIWIFI" || title == undefined) {
@@ -145,8 +145,8 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
     }
 
     // 이전 DB 불러오기 작업
-    title_list = JSON.parse(await DB.getDB("UOSP2_last_title")) // DB에 저장된 title list
-    address_list = JSON.parse(await DB.getDB("UOSP2_last_address")) // DB에 저장된 title list
+    let title_list = JSON.parse(await DB.getDB("UOSP2_last_title")) // DB에 저장된 title list
+    let address_list = JSON.parse(await DB.getDB("UOSP2_last_address")) // DB에 저장된 title list
 
 
     try{
@@ -230,15 +230,17 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
 
 UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChannel,headless=true,dept,link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
 
+    let SW_new = 0
+
     let body = await ( await fetch(link,{
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
         }
     })).text()
 
-    title_array = cheersoup(body).select(".tb-body").toArray().filter(v=>v.select("li.tb-wid01").text() != "[공지]").map(v=>v.selectFirst("a").text())
+    let title_array = cheersoup(body).select(".tb-body").toArray().filter(v=>v.select("li.tb-wid01").text() != "[공지]").map(v=>v.selectFirst("a").text())
 
-    title = title_array[0]
+    let title = title_array[0]
 
     // 파싱 에러 필터링
     if (title == "" || title == "MIWIFI" || title == undefined) {
@@ -246,7 +248,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
     }
 
     // 이전 DB 불러오기 작업
-    title_list = JSON.parse(await DB.getDB("title_"+dept)) // DB에 저장된 title list
+    let title_list = JSON.parse(await DB.getDB("title_"+dept)) // DB에 저장된 title list
 
 
     try{
@@ -266,7 +268,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
     if (SW_new == 1 || test == true) {
 
-        str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${link}`
+        let str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${link}`
 
         if (headless==false){
             browser = await puppeteer.launch({
@@ -313,6 +315,8 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
             await channels.sendChat(title)
             await UOSP.sleep(3000)
             await channels.sendChat(link)
+            await UOSP.sleep(3000)
+            await channels.sendChat(str)
         }
         catch(e){
             console.log("dept image error : " + e)
