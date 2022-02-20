@@ -2,6 +2,14 @@ Thread = new Object()
 
 const UOSP = require('./UOSP.js')
 
+test = false
+channels = noticeChannel
+headless = true
+dept = ""
+dept_link = ""
+dept_name = ""
+
+
 
 
 Thread.Thread_UOSP1 = async function Thread_UOSP1(){
