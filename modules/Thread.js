@@ -39,7 +39,7 @@ Thread.Thread_UOSP25 = async function Thread_UOSP25(){
             await Thread.sleep(120000)
             await UOSP.UOSP25()
             await Thread.sleep(120000)
-            await UOSP.UOSPschloar 
+            await UOSP.UOSPschloar()
             await Thread.sleep(120000)
         }
         catch(e){
