@@ -199,7 +199,7 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
             await browser.close()
 
             await channels.sendMedia(KnownChatType.PHOTO, {
-                name: "UOSP1.png",
+                name: "UOSP2.png",
                 data: buffer,
                 width: picInfo.width,
                 height: 100,
@@ -221,6 +221,101 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
     
 
 }
+
+
+
+
+// "https://www.uos.ac.kr/engineering/korNotice/allList.do?list_id=20013DA1&cate_id2=000010058&epTicket=INV" 전전컴
+
+
+UOSP.dept_parsing = function dept_parsing(test=false,channels=noticeChannel,headless=true,dept,link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
+
+
+    let body = await ( await fetch(link,{
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
+        }
+    })).text()
+
+    title_array = cheersoup(body).select(".tb-body").toArray().filter(v=>v.select("li.tb-wid01").text() != "[공지]").map(v=>v.selectFirst("a").text())
+
+    title = title_array[0]
+
+    // 파싱 에러 필터링
+    if (title == "" || title == "MIWIFI" || title == undefined) {
+        return 0;
+    }
+
+    // 이전 DB 불러오기 작업
+    title_list = JSON.parse(await DB.getDB("title_"+dept)) // DB에 저장된 title list
+
+
+    try{
+        if(title_list.indexOf(title)){ // DB에 기록된내용이 없는지 감지
+
+            SW_new = 1
+
+            // DB 재기록작업
+            await DB.setDB("title_"+dept,JSON.stringify(title_array))
+
+        }
+    }
+    catch(e){
+
+    }
+
+
+    if (SW_new == 1 || test == true) {
+
+        str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${link}`
+
+        if (headless==false){
+            browser = await puppeteer.launch({
+                headless: false,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+        else{
+            browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+
+        try{
+            let page = await browser.newPage();
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
+            await page.setViewport({ width: 2500, height: 20000 })
+            page.waitForNavigation( ),
+            page.click( "ul.clearfix>li.tb-wid02>a" )
+            let buffer = await (await page.$('div.sc-right')).screenshot()
+            let picInfo = await imgSizeSync(buffer)
+            await browser.close()
+
+            await channels.sendMedia(KnownChatType.PHOTO, {
+                name: "UOS.png",
+                data: buffer,
+                width: picInfo.width,
+                height: 100,
+                ext: 'png'
+            });
+
+            channels.sendChat(str)
+        }
+        catch(e){
+            console.log("dept image error : " + e)
+            await browser.close()
+            channels.sendChat(str)
+        }
+
+
+
+
+    }
+        
+
+}
+
 
 
 
