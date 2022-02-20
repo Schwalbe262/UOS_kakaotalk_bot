@@ -6,7 +6,7 @@ const UOSP = require('./UOSP.js')
 
 Thread.Thread_UOSP1 = async function Thread_UOSP1(){
 
-    botChannel.sendChat("Thread_UOSP1 실행")
+    botChannel.sendChat("Thread_fast 실행")
 
     while(1){
         try{
@@ -20,6 +20,22 @@ Thread.Thread_UOSP1 = async function Thread_UOSP1(){
         }
     }
 }
+
+Thread.Thread_UOSP25 = async function Thread_UOSP25(){
+
+    botChannel.sendChat("Thread_slow 실행")
+
+    while(1){
+        try{
+            await UOSP.UOSP25()
+            await Thread.sleep(360000)
+        }
+        catch(e){
+            await Thread.sleep(360000)
+        }
+    }
+}
+
 
 
 Thread.Thread_dept = async function Thread_dept(){
