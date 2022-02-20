@@ -500,7 +500,7 @@ UOSP.UOSPschloar = async function UOSPschloar(test=false,channels=noticeChannel,
             let page = await browser.newPage();
             await page.setViewport({ width: 2500, height: 20000 })
 
-            await page.goto(dept_link, { waitUntil: 'networkidle0', timeout: 0 })
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
 
             await UOSP.sleep(3000)
 
