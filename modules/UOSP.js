@@ -283,9 +283,8 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
         try{
             let page = await browser.newPage();
-            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
             await page.setViewport({ width: 2500, height: 20000 })
-            page.waitForNavigation( ),
+            page.waitForNavigation( await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 }) ),
             page.click( "ul.clearfix>li.tb-wid02>a" )
             let buffer = await (await page.$('div.sc-right')).screenshot()
             let picInfo = await imgSizeSync(buffer)
