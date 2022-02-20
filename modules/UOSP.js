@@ -225,7 +225,7 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
 
 
 // 입찰
-UOSP.UOSP25 = async function UOSP22(test=false,channels=noticeChannel,headless=true){
+UOSP.UOSP22 = async function UOSP22(test=false,channels=noticeChannel,headless=true){
 
     let str = "";
     let SW_new = 0;
