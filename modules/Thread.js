@@ -27,11 +27,13 @@ Thread.Thread_UOSP25 = async function Thread_UOSP25(){
 
     while(1){
         try{
+            await UOSP.UOSP22()
+            await Thread.sleep(180000)
             await UOSP.UOSP25()
-            await Thread.sleep(360000)
+            await Thread.sleep(180000)
         }
         catch(e){
-            await Thread.sleep(360000)
+            await Thread.sleep(180000)
         }
     }
 }
