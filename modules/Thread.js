@@ -62,6 +62,15 @@ Thread.Thread_dept = async function Thread_dept(){
             await Thread.sleep(10000)
             await UOSP.dept_parsing(test=false,channels=noticeChannel,headless=true,dept="AI",link="https://www.uos.ac.kr/engineering/korNotice/allList.do?list_id=20013DA1&cate_id2=000010085&epTicket=LOG",dept_name="인공지능학과")
             await Thread.sleep(10000)
+            await UOSP.dept_parsing(test=false,channels=noticeChannel,headless=true,dept="PADM",link="https://www.uos.ac.kr/engineering/korNotice/allList.do?list_id=20013DA1&cate_id2=000010382&epTicket=LOG",dept_name="행정학과")
+            await Thread.sleep(10000)
+            await UOSP.dept_parsing(test=false,channels=noticeChannel,headless=true,dept="INTR",link="https://social.uos.ac.kr/social/korNotice/allList.do?list_id=econo01&cate_id2=000010055&epTicket=LOG",dept_name="국제관계학과")
+            await Thread.sleep(10000)
+            await UOSP.dept_parsing(test=false,channels=noticeChannel,headless=true,dept="ECON",link="https://social.uos.ac.kr/social/korNotice/allList.do?list_id=econo01&cate_id2=000010057&epTicket=LOG",dept_name="경제학부")
+            await Thread.sleep(10000)
+            await UOSP.dept_parsing(test=false,channels=noticeChannel,headless=true,dept="SOCWEL",link="https://social.uos.ac.kr/social/korNotice/allList.do?list_id=econo01&cate_id2=000010072&epTicket=LOG",dept_name="사회복지학과")
+            await Thread.sleep(10000)
+            await UOSP.dept_parsing(test=false,channels=noticeChannel,headless=true,dept="TAX",link="https://social.uos.ac.kr/social/korNotice/allList.do?list_id=econo01&cate_id2=000010074&epTicket=LOG",dept_name="세무학과")
         }
         catch(e){
             await Thread.sleep(30000)
