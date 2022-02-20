@@ -438,11 +438,11 @@ UOSP.UOSP25 = async function UOSP25(test=false,channels=noticeChannel,headless=t
 // "https://www.uos.ac.kr/engineering/korNotice/allList.do?list_id=20013DA1&cate_id2=000010058&epTicket=INV" 전전컴
 
 
-UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChannel,headless=true,dept,link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
+UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChannel,headless=true,dept,dept_link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
 
     let SW_new = 0
 
-    let body = await ( await fetch(link,{
+    let body = await ( await fetch(dept_link,{
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
         }
@@ -478,7 +478,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
     if (SW_new == 1 || test == true) {
 
-        let str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${link}`
+        let str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${dept_link}`
 
         if (headless==false){
             browser = await puppeteer.launch({
@@ -498,7 +498,7 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
             let page = await browser.newPage();
             await page.setViewport({ width: 2500, height: 20000 })
 
-            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
+            await page.goto(dept_link, { waitUntil: 'networkidle0', timeout: 0 })
 
             await UOSP.sleep(3000)
 
@@ -537,11 +537,11 @@ UOSP.dept_parsing = async function dept_parsing(test=false,channels=noticeChanne
 
 
 
-UOSP.admin_parsing = async function admin_parsing(test=false,channels=noticeChannel,headless=true,dept,link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
+UOSP.admin_parsing = async function admin_parsing(test=false,channels=noticeChannel,headless=true,dept,dept_link,dept_name){ // 공과대학 최신공지 제목을 파싱하여 어레이로 반환
 
     let SW_new = 0
 
-    let body = await ( await fetch(link,{
+    let body = await ( await fetch(dept_link,{
         headers: {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
         }
@@ -577,7 +577,7 @@ UOSP.admin_parsing = async function admin_parsing(test=false,channels=noticeChan
 
     if (SW_new == 1 || test == true) {
 
-        let str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${link}`
+        let str = `${dept_name}공지 알림 : ${title}\n\n보러가기 : ${dept_link}`
 
         if (headless==false){
             browser = await puppeteer.launch({
@@ -597,7 +597,7 @@ UOSP.admin_parsing = async function admin_parsing(test=false,channels=noticeChan
             let page = await browser.newPage();
             await page.setViewport({ width: 2500, height: 20000 })
 
-            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
+            await page.goto(dept_link, { waitUntil: 'networkidle0', timeout: 0 })
 
             await UOSP.sleep(3000)
 
