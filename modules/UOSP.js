@@ -224,6 +224,109 @@ UOSP.UOSP2 = async function UOSP2(test=false,channels=noticeChannel,headless=tru
 
 
 
+// 입찰
+UOSP.UOSP25 = async function UOSP22(test=false,channels=noticeChannel,headless=true){
+
+    let str = "";
+    let SW_new = 0;
+
+    let body = await ( await fetch("http://www.uos.ac.kr/korNotice/list.do?list_id=FA22",{
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
+        }
+    })).text()
+
+    let title_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").text())
+    let address_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("a").attr("href").split("'")[3])
+    let publisher_array = cheersoup(body).select("ul.brd-lstp1>li").toArray().filter(v=>!v.selectFirst("span.cl")).map(v=>v.selectFirst("span").text())
+
+    let title = title_array[0]
+    let address = address_array[0]
+    let publisher = publisher_array[0]
+
+    // 파싱 에러 필터링
+    if (title == "" || title == "MIWIFI" || title == undefined) {
+        return 0;
+    }
+
+    // 이전 DB 불러오기 작업
+    let title_list = JSON.parse(await DB.getDB("UOSP22_last_title")) // DB에 저장된 title list
+    let address_list = JSON.parse(await DB.getDB("UOSP22_last_address")) // DB에 저장된 title list
+
+
+    try{
+        if(title_list.indexOf(title) || address_list.indexOf(address)){ // DB에 기록된내용이 없는지 감지
+
+            SW_new = 1
+
+            // DB 재기록작업
+            await DB.setDB("UOSP22_last_title",JSON.stringify(title_array))
+            await DB.setDB("UOSP22_last_address",JSON.stringify(address_array))
+
+        }
+    }
+    catch(e){
+
+    }
+
+
+    if (SW_new == 1 || test == true) {
+
+        let pre_text = `입찰공지 : ${title}`
+        let header_title = "입찰공지알림"
+        let link = `http://www.uos.ac.kr/korNotice/view.do?list_id=FA22&seq=${address}&epTicket=INV`
+        let str = `입찰공지 알림 : ${title}\n\n보러가기 : ${link}`
+
+        if (headless==false){
+            browser = await puppeteer.launch({
+                headless: false,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+        else{
+            browser = await puppeteer.launch({
+                headless: true,
+                args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            });
+        }
+
+        
+
+        try{
+            let page = await browser.newPage();
+            await page.goto(link, { waitUntil: 'networkidle0', timeout: 0 })
+            await page.setViewport({ width: 2500, height: 20000 })
+            //let buffer = await page.screenshot({ path: './images/RNDJM.png' })
+            //let buffer = await page.screenshot()
+            //let buffer = await (await page.$('div[id=wrap]')).screenshot()
+            let buffer = await (await page.$('div.view-bx')).screenshot()
+            let picInfo = await imgSizeSync(buffer)
+            await browser.close()
+
+            await channels.sendMedia(KnownChatType.PHOTO, {
+                name: "UOSP22.png",
+                data: buffer,
+                width: picInfo.width,
+                height: 100,
+                ext: 'png'
+            });
+
+            channels.sendChat(str)
+        }
+        catch(e){
+            console.log("UOSP22 image error : " + e)
+            await browser.close()
+            channels.sendChat(str)
+        }
+
+
+
+    }
+
+    
+
+}
+
 
 // 시설공사공지
 UOSP.UOSP25 = async function UOSP25(test=false,channels=noticeChannel,headless=true){
