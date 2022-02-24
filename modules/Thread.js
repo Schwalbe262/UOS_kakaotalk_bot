@@ -24,6 +24,7 @@ Thread.Thread_UOSP1 = async function Thread_UOSP1(){
             await Thread.sleep(10000)
         }
         catch(e){
+            botChannel.sendChat("Thread_fast error : " + e)
             await Thread.sleep(30000)
         }
     }
@@ -43,6 +44,7 @@ Thread.Thread_UOSP25 = async function Thread_UOSP25(){
             await Thread.sleep(120000)
         }
         catch(e){
+            botChannel.sendChat("Thread_slow error : " + e)
             await Thread.sleep(180000)
         }
     }
@@ -135,6 +137,7 @@ Thread.Thread_dept = async function Thread_dept(){
         
         }
         catch(e){
+            botChannel.sendChat("Thread_dept error : " + e)
             await Thread.sleep(30000)
         }
     }
