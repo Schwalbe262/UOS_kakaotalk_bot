@@ -134,6 +134,8 @@ Thread.Thread_dept = async function Thread_dept(){
             await Thread.sleep(dept_time)
             try{await UOSP.admin_parsing(test=false,channels=noticeChannel,headless=true,dept="ADMIN",dept_link="https://biz.uos.ac.kr/korNotice/list.do?list_id=20008N2&epTicket=LOG",dept_name="경영학부")}catch(e){}
             await Thread.sleep(dept_time)
+
+            botChannel.sendChat("Thread_slow 정상 작동 중")
         
         }
         catch(e){
