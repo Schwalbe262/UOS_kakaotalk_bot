@@ -11,6 +11,8 @@ const { KnownChatType } = require('node-kakao');
 
 Hotdeal.FMK = async function FMK(test=false,channels){
 
+    let SW_net = 0
+
     let url = "https://www.fmkorea.com/hotdeal"
 
     let body = await ( await fetch(url,{
@@ -51,11 +53,12 @@ Hotdeal.FMK = async function FMK(test=false,channels){
 
     }
 
-    let str = `==${category} 핫딜==\n\n${title}\n\n${shop}\n${price}\n${delivery}\n\n링크 : ${URL}`
+    if (SW_new == 1){
 
+        let str = `==${category} 핫딜==\n\n${title}\n\n${shop}\n${price}\n${delivery}\n\n링크 : ${URL}`
+        channels.sendChat(str)
 
-    channels.sendChat(str)
-
+    }
 
 
 }
