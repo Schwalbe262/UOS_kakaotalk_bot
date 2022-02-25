@@ -55,7 +55,7 @@ Hotdeal.FMK = async function FMK(test=false,channels){
 
     if (SW_new == 1){
 
-        let str = `==${category} 핫딜==\n\n${title}\n\n${shop}\n${price}\n${delivery}\n\n링크 : ${URL}`
+        let str = `- ${category} 핫딜 -\n\n${title}\n\n${shop}\n${price}\n${delivery}\n\n링크 : ${URL}`
         channels.sendChat(str)
 
     }
