@@ -1,6 +1,7 @@
 Thread = new Object()
 
 const UOSP = require('./UOSP.js')
+const Hotdeal = require('./Hotdeal.js')
 
 let test = false
 let channels = null
@@ -147,13 +148,30 @@ Thread.Thread_dept = async function Thread_dept(){
 
 
 
+Thread.Thread_Hotdeal = async function Thread_Hotdeal1(){
+
+    botChannel.sendChat("Thread_Hotdeal 실행")
+
+    while(1){
+        try{
+            await Hotdeal.Hotdeal(test,channels=noticeChannel2)
+            await Thread.sleep(10000)
+        }
+        catch(e){
+            botChannel.sendChat("Thread_Hotdeal error : " + e)
+            await Thread.sleep(30000)
+        }
+    }
+}
+
+
+
 
 
 Thread.sleep = async function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
     // await UOSP.sleep(1000)
 }
-
 
 
 module.exports = Thread

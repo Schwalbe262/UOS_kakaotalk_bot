@@ -54,6 +54,7 @@ CLIENT.on('chat', async(data, channel) => {
             Thread.Thread_UOSP1()
             Thread.Thread_UOSP25()
             Thread.Thread_dept()
+            Thread.Thread_Hotdeal()
             
             start = 0
         }
