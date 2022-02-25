@@ -4,6 +4,7 @@ const DB = require("./DB.js")
 const cheerio = require('cheerio')
 const fetch = require('node-fetch')
 const cheersoup = require('cheersoup')
+const iconv = require("iconv-lite")
 
 
 const { KnownChatType } = require('node-kakao');
@@ -22,7 +23,10 @@ Hotdeal.FMK = async function FMK(test=false,channels){
     })).text()
 
 
-    let content = cheersoup(body).select("div.fm_best_widget._bd_pc").select("li").toArray()[0]
+    let content = content = cheersoup(iconv.decode(body, 'EUC-KR').toString()).selectFirst("table#revolution_main_table").selectFirst("tbody").select("tr[align=center]").toArray()
+    .filter(v => v.select("td>img").attr("src")  != "/zboard/dq_css/separator.gif")
+    .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_notice.png")
+    .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_inform.png")[0]
 
     let title = content.selectFirst("h3.title>a").ownText().trim()
 
@@ -64,6 +68,53 @@ Hotdeal.FMK = async function FMK(test=false,channels){
 }
 
 
+Hotdeal.PPU = async function PPU(test=false,channels){
+
+    let SW_new = 0
+
+    let url = "https://www.ppomppu.co.kr/zboard/zboard.php?id=ppomppu&ismobile"
+
+    let body = await fetch(url,{
+        headers: {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.99 Safari/537.36'
+        }
+    }).then(res=>res.buffer())
+
+
+    let content = cheersoup(iconv.decode(body, 'EUC-KR').toString()).selectFirst("table#revolution_main_table").selectFirst("tbody").selectFirst("tr[align=center]")
+
+    let title = content.select("font.list_title").text()
+    let category = content.select("span").toArray()[content.select("span").toArray().length-1].text()
+    let URL = "https://www.ppomppu.co.kr/zboard/view.php?id=ppomppu&no=" + content.selectFirst("td").text()
+
+
+    // 이전 DB 불러오기 작업
+    let title_DB = await DB.getDB("PPU_last_title") // DB에 저장된 title list
+
+    try{
+        if(title_DB != title || test == true){ // DB에 기록된내용이 없는지 감지
+
+            SW_new = 1
+
+            // DB 재기록작업
+            await DB.setDB("PPU_last_title",title)
+
+
+        }
+    }
+    catch(e){
+
+    }
+
+    if (SW_new == 1){
+
+        let str = `- ${category} 핫딜 -\n\n${title}\n\n링크 : ${URL}`
+        channels.sendChat(str)
+
+    }
+
+
+}
 
 
 

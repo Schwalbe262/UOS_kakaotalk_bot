@@ -136,7 +136,7 @@ Thread.Thread_dept = async function Thread_dept(){
             try{await UOSP.admin_parsing(test=false,channels=noticeChannel,headless=true,dept="ADMIN",dept_link="https://biz.uos.ac.kr/korNotice/list.do?list_id=20008N2&epTicket=LOG",dept_name="경영학부")}catch(e){}
             await Thread.sleep(dept_time)
 
-            botChannel.sendChat("Thread_slow 정상 작동 중")
+            botChannel.sendChat("Thread_dept 정상 작동 중")
         
         }
         catch(e){
@@ -148,15 +148,17 @@ Thread.Thread_dept = async function Thread_dept(){
 
 
 
-Thread.Thread_Hotdeal = async function Thread_Hotdeal1(){
+Thread.Thread_Hotdeal = async function Thread_Hotdeal(){
 
     botChannel.sendChat("Thread_Hotdeal 실행")
 
     while(1){
         try{
-            let random_delay = Math.floor(Math.random() * (15000 - 10000)) + 10000
+            let random_delay = Math.floor(Math.random() * (5000)) + 2500
             await Hotdeal.FMK(test=false,channels=noticeChannel2)
-            await Thread.sleep(5000 + random_delay)
+            await Thread.sleep(random_delay)
+            await Hotdeal.PPU(test=false,channels=noticeChannel2)
+            await Thread.sleep(random_delay)
         }
         catch(e){
             botChannel.sendChat("Thread_Hotdeal error : " + e)
