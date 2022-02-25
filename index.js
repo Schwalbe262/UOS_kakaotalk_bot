@@ -16,7 +16,7 @@ env = require("./config.json")
 const DB = require("./modules/DB.js")
 const UOSP = require("./modules/UOSP.js")
 const Thread = require("./modules/Thread.js")
-const Thread = require("./modules/Hotdeal.js")
+const Hotdeal = require("./modules/Hotdeal.js")
 
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
