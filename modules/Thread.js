@@ -154,12 +154,12 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal1(){
 
     while(1){
         try{
-            await Hotdeal.Hotdeal(test,channels=noticeChannel2)
+            await Hotdeal.Hotdeal(test=false,channels=noticeChannel2)
             await Thread.sleep(10000)
         }
         catch(e){
             botChannel.sendChat("Thread_Hotdeal error : " + e)
-            await Thread.sleep(30000)
+            await Thread.sleep(10000)
         }
     }
 }
