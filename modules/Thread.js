@@ -154,8 +154,9 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal1(){
 
     while(1){
         try{
+            let random_delay = Math.floor(Math.random() * (15000 - 10000)) + 10000
             await Hotdeal.FMK(test=false,channels=noticeChannel2)
-            await Thread.sleep(10000)
+            await Thread.sleep(5000 + random_delay)
         }
         catch(e){
             botChannel.sendChat("Thread_Hotdeal error : " + e)
