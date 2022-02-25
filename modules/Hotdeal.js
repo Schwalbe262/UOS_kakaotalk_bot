@@ -22,11 +22,7 @@ Hotdeal.FMK = async function FMK(test=false,channels){
         }
     })).text()
 
-
-    let content = content = cheersoup(iconv.decode(body, 'EUC-KR').toString()).selectFirst("table#revolution_main_table").selectFirst("tbody").select("tr[align=center]").toArray()
-    .filter(v => v.select("td>img").attr("src")  != "/zboard/dq_css/separator.gif")
-    .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_notice.png")
-    .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_inform.png")[0]
+    let content = cheersoup(body).select("div.fm_best_widget._bd_pc").select("li").toArray()[0]
 
     let title = content.selectFirst("h3.title>a").ownText().trim()
 
@@ -81,7 +77,10 @@ Hotdeal.PPU = async function PPU(test=false,channels){
     }).then(res=>res.buffer())
 
 
-    let content = cheersoup(iconv.decode(body, 'EUC-KR').toString()).selectFirst("table#revolution_main_table").selectFirst("tbody").selectFirst("tr[align=center]")
+    let content = content = cheersoup(iconv.decode(body, 'EUC-KR').toString()).selectFirst("table#revolution_main_table").selectFirst("tbody").select("tr[align=center]").toArray()
+    .filter(v => v.select("td>img").attr("src")  != "/zboard/dq_css/separator.gif")
+    .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_notice.png")
+    .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_inform.png")[0]
 
     let title = content.select("font.list_title").text()
     let category = content.select("span").toArray()[content.select("span").toArray().length-1].text()
