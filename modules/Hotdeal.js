@@ -11,7 +11,7 @@ const { KnownChatType } = require('node-kakao');
 
 Hotdeal.FMK = async function FMK(test=false,channels){
 
-    let SW_net = 0
+    let SW_new = 0
 
     let url = "https://www.fmkorea.com/hotdeal"
 
