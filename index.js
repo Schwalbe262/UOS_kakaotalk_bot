@@ -52,8 +52,11 @@ CLIENT.on('chat', async(data, channel) => {
             global.noticeChannel2 = CLIENT.channelList.get(channel_params.noticeChannelId2)
 
             Thread.Thread_UOSP1()
+            sleep(500)
             Thread.Thread_UOSP25()
+            sleep(500)
             Thread.Thread_dept()
+            sleep(500)
             Thread.Thread_Hotdeal()
             
             start = 0
@@ -105,6 +108,12 @@ async function main() {
 }
 main().then()
 
+
+
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+    // await UOSP.sleep(1000)
+}
 
 
 
