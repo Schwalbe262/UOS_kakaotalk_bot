@@ -29,8 +29,8 @@ Hotdeal.FMK = async function FMK(test=false,channels){
     let temp = content.select("div.hotdeal_info>span").toArray().map(v=>v.text())
 
     let shop = temp[0]
-    let price = temp[1]
-    let delivery = temp[2]
+    let price = temp[1].split("배송: ")[1]
+    let delivery = temp[2].split("쇼핑몰: ")[1]
     let URL = "https://www.fmkorea.com/" + content.selectFirst("a").attr("href")
     let category = content.select("div>span.category>a").text()
 
@@ -55,7 +55,7 @@ Hotdeal.FMK = async function FMK(test=false,channels){
 
     if (SW_new == 1){
 
-        let str = `- ${category} 핫딜 -\n\n${title}\n\n${shop}\n${price}\n${delivery}\n\n링크 : ${URL}`
+        let str = `- ${category} 핫딜 -\n\n${title}\n\n${price} (${delivery}) / ${shop}\n\n링크 : ${URL}`
         channels.sendChat(str)
 
     }
