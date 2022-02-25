@@ -77,7 +77,7 @@ Hotdeal.PPU = async function PPU(test=false,channels){
     }).then(res=>res.buffer())
 
 
-    let content = content = cheersoup(iconv.decode(body, 'EUC-KR').toString()).selectFirst("table#revolution_main_table").selectFirst("tbody").select("tr[align=center]").toArray()
+    let content = cheersoup(iconv.decode(body, 'EUC-KR').toString()).selectFirst("table#revolution_main_table").selectFirst("tbody").select("tr[align=center]").toArray()
     .filter(v => v.select("td>img").attr("src")  != "/zboard/dq_css/separator.gif")
     .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_notice.png")
     .filter(v => v.select("td>img").attr("src")  != "/images/list_icon_inform.png")[0]
