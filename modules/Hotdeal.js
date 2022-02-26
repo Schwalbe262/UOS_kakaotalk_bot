@@ -37,9 +37,10 @@ Hotdeal.FMK = async function FMK(test=false,channels){
 
     // 이전 DB 불러오기 작업
     let title_DB = await DB.getDB("FMK_last_title") // DB에 저장된 title list
+    let URL_DB = await DB.getDB("FMK_last_URL")
 
     try{
-        if(title_DB != title || test == true){ // DB에 기록된내용이 없는지 감지
+        if(URL_DB != URL || test == true){ // DB에 기록된내용이 없는지 감지
 
             SW_new = 1
 
@@ -89,9 +90,10 @@ Hotdeal.PPU = async function PPU(test=false,channels){
 
     // 이전 DB 불러오기 작업
     let title_DB = await DB.getDB("PPU_last_title") // DB에 저장된 title list
+    let URL_DB = await DB.getDB("PPU_last_URL")
 
     try{
-        if(title_DB != title || test == true){ // DB에 기록된내용이 없는지 감지
+        if(URL_DB != URL || test == true){ // DB에 기록된내용이 없는지 감지
 
             SW_new = 1
 
