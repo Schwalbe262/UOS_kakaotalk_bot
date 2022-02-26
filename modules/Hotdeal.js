@@ -40,13 +40,13 @@ Hotdeal.FMK = async function FMK(test=false,channels){
     let URL_DB = await DB.getDB("FMK_last_URL")
 
     try{
-        if(URL_DB < content.selectFirst("a").attr("href") || test == true){ // DB에 기록된내용이 없는지 감지
+        if(URL_DB < content.selectFirst("a").attr("href").split("/")[1] || test == true){ // DB에 기록된내용이 없는지 감지
 
             SW_new = 1
 
             // DB 재기록작업
             await DB.setDB("FMK_last_title",title)
-            await DB.setDB("FMK_last_URL",content.selectFirst("a").attr("href"))
+            await DB.setDB("FMK_last_URL",content.selectFirst("a").attr("href").split("/")[1])
 
 
         }
