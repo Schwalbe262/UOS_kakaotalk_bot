@@ -46,6 +46,7 @@ Hotdeal.FMK = async function FMK(test=false,channels){
 
             // DB 재기록작업
             await DB.setDB("FMK_last_title",title)
+            await DB.setDB("FMK_last_URL",content.selectFirst("a").attr("href"))
 
 
         }
@@ -99,6 +100,7 @@ Hotdeal.PPU = async function PPU(test=false,channels){
 
             // DB 재기록작업
             await DB.setDB("PPU_last_title",title)
+            await DB.setDB("PPU_last_URL",content.selectFirst("td").text())
 
 
         }
