@@ -40,7 +40,7 @@ Hotdeal.FMK = async function FMK(test=false,channels){
     let URL_DB = await DB.getDB("FMK_last_URL")
 
     try{
-        if(URL_DB != URL || test == true){ // DB에 기록된내용이 없는지 감지
+        if(URL_DB < content.selectFirst("a").attr("href") || test == true){ // DB에 기록된내용이 없는지 감지
 
             SW_new = 1
 
@@ -93,7 +93,7 @@ Hotdeal.PPU = async function PPU(test=false,channels){
     let URL_DB = await DB.getDB("PPU_last_URL")
 
     try{
-        if(URL_DB != URL || test == true){ // DB에 기록된내용이 없는지 감지
+        if(URL_DB < content.selectFirst("td").text() || test == true){ // DB에 기록된내용이 없는지 감지
 
             SW_new = 1
 
