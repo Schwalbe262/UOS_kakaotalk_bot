@@ -160,7 +160,7 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal(){
             await Thread.sleep(random_delay)
             await Hotdeal.PPU(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
-            await Renthome.PPU(test=false,channels=noticeChannel2)
+            await Renthome.SH(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
         }
         catch(e){

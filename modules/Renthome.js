@@ -75,7 +75,7 @@ Renthome.SH = async function SH(test=false,channels){
             await browser.close()
 
             await channels.sendMedia(KnownChatType.PHOTO, {
-                name: "UOSP1.png",
+                name: "SH.png",
                 data: buffer,
                 width: picInfo.width,
                 height: 100,
