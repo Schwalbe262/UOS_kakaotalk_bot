@@ -42,12 +42,12 @@ Renthome.SH = async function SH(test=false,channels){
     catch(e){
     }
 
-
+    let str = `- SH 공고 -\n\n${title}\n\n보러가기 : ${url}`
     
 
     if (SW_new == 1 || test == true) {
 
-        let str = `- SH 공고 -\n\n${title}\n\n보러가기 : ${URL}`
+        
 
         try{
 
@@ -82,10 +82,12 @@ Renthome.SH = async function SH(test=false,channels){
                 ext: 'png'
             });
 
+            
+
             channels.sendChat(str)
         }
         catch(e){
-            console.log("UOSP1 image error : " + e)
+            console.log("SH image error : " + e)
             await browser.close()
             channels.sendChat(str)
         }
