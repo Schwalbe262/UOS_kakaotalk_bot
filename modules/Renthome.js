@@ -81,9 +81,6 @@ Renthome.SH = async function SH(test=false,channels){
                 height: 100,
                 ext: 'png'
             });
-
-            
-
             channels.sendChat(str)
         }
         catch(e){
@@ -95,14 +92,6 @@ Renthome.SH = async function SH(test=false,channels){
 
 
     }
-
-    if (SW_new == 1){
-
-        
-        channels.sendChat(str)
-
-    }
-
 
 }
 

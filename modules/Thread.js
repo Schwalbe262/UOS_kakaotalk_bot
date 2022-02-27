@@ -2,6 +2,7 @@ Thread = new Object()
 
 const UOSP = require('./UOSP.js')
 const Hotdeal = require('./Hotdeal.js')
+const Renthome = require('./Renthome.js')
 
 let test = false
 let channels = null
@@ -154,10 +155,12 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal(){
 
     while(1){
         try{
-            let random_delay = Math.floor(Math.random() * (5000)) + 2500
+            let random_delay = Math.floor(Math.random() * (4000)) + 2000
             await Hotdeal.FMK(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
             await Hotdeal.PPU(test=false,channels=noticeChannel2)
+            await Thread.sleep(random_delay)
+            await Renthome.PPU(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
         }
         catch(e){
