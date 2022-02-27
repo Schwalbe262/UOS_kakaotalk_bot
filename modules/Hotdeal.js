@@ -113,7 +113,7 @@ Hotdeal.PPU = async function PPU(test=false,channels){
 
     if (SW_new == 1){
 
-        let str = `- ${category} 핫딜 -\n\n${title}\n\n링크 : ${URL}`
+        let str = `- ${category} 핫딜 -\n\n${title}\n\n링크 : ${url}`
         channels.sendChat(str)
 
     }

@@ -17,6 +17,7 @@ const DB = require("./modules/DB.js")
 const UOSP = require("./modules/UOSP.js")
 const Thread = require("./modules/Thread.js")
 const Hotdeal = require("./modules/Hotdeal.js")
+const Renthome = require("./modules/Renthome.js")
 
 const DEVICE_UUID = env.UUID
 const DEVICE_ID = env.ID
