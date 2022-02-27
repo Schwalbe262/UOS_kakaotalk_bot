@@ -49,23 +49,13 @@ Renthome.SH = async function SH(test=false,channels){
 
         let str = `- SH 공고 -\n\n${title}\n\n보러가기 : {URL}`
 
+        try{
 
-        if (headless==false){
-            browser = await puppeteer.launch({
-                headless: false,
-                args: ['--no-sandbox', '--disable-setuid-sandbox'],
-            });
-        }
-        else{
             browser = await puppeteer.launch({
                 headless: true,
                 args: ['--no-sandbox', '--disable-setuid-sandbox'],
             });
-        }
 
-        
-
-        try{
             let page = await browser.newPage();
             await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 })
             await page.setViewport({ width: 2500, height: 20000 })
