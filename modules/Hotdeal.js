@@ -55,6 +55,8 @@ Hotdeal.FMK = async function FMK(test=false,channels){
 
     }
 
+
+
     if (SW_new == 1){
 
         let str = `- ${category} 핫딜 -\n\n${title}\n\n${price} (${delivery}) / ${shop}\n\n링크 : ${URL}`

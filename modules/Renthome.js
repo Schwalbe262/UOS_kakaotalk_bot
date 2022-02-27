@@ -47,7 +47,7 @@ Renthome.SH = async function SH(test=false,channels){
 
     if (SW_new == 1 || test == true) {
 
-        let str = `- SH 공고 -\n\n${title}\n\n보러가기 : {URL}`
+        let str = `- SH 공고 -\n\n${title}\n\n보러가기 : ${URL}`
 
         try{
 
