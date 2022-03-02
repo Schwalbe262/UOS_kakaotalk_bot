@@ -39,11 +39,13 @@ Thread.Thread_UOSP25 = async function Thread_UOSP25(){
     while(1){
         try{
             await UOSP.UOSP22()
-            await Thread.sleep(120000)
+            await Thread.sleep(90000)
             await UOSP.UOSP25()
-            await Thread.sleep(120000)
+            await Thread.sleep(90000)
             await UOSP.UOSPschloar()
-            await Thread.sleep(120000)
+            await Thread.sleep(90000)
+            await Renthome.SH(test=false,channels=noticeChannel2)
+            await Thread.sleep(90000)
         }
         catch(e){
             botChannel.sendChat("Thread_slow error : " + e)
@@ -159,8 +161,6 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal(){
             await Hotdeal.FMK(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
             await Hotdeal.PPU(test=false,channels=noticeChannel2)
-            await Thread.sleep(random_delay)
-            await Renthome.SH(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
         }
         catch(e){
