@@ -39,13 +39,13 @@ Thread.Thread_UOSP25 = async function Thread_UOSP25(){
     while(1){
         try{
             await UOSP.UOSP22()
-            await Thread.sleep(90000)
+            await Thread.sleep(900000)
             await UOSP.UOSP25()
-            await Thread.sleep(90000)
+            await Thread.sleep(900000)
             await UOSP.UOSPschloar()
-            await Thread.sleep(90000)
+            await Thread.sleep(900000)
             await Renthome.SH(test=false,channels=noticeChannel2)
-            await Thread.sleep(90000)
+            await Thread.sleep(900000)
         }
         catch(e){
             botChannel.sendChat("Thread_slow error : " + e)
