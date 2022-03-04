@@ -56,6 +56,7 @@ Thread.Thread_UOSP25 = async function Thread_UOSP25(){
 
 
 let dept_time = 15000
+let dept_count = 0
 
 
 Thread.Thread_dept = async function Thread_dept(){
@@ -139,7 +140,14 @@ Thread.Thread_dept = async function Thread_dept(){
             try{await UOSP.admin_parsing(test=false,channels=noticeChannel,headless=true,dept="ADMIN",dept_link="https://biz.uos.ac.kr/korNotice/list.do?list_id=20008N2&epTicket=LOG",dept_name="경영학부")}catch(e){}
             await Thread.sleep(dept_time)
 
-            botChannel.sendChat("Thread_dept 정상 작동 중")
+            dept_count = dept_count + 1
+
+            if(dept_count == 20){
+                botChannel.sendChat("Thread_dept 정상 작동 중")
+                dept_count = 0
+            }
+
+            
         
         }
         catch(e){
