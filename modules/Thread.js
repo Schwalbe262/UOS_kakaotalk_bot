@@ -165,15 +165,15 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal(){
 
     while(1){
         try{
-            let random_delay = Math.floor(Math.random() * (4000)) + 2000
-            await Hotdeal.FMK(test=false,channels=noticeChannel2)
-            await Thread.sleep(random_delay)
+            let random_delay = Math.floor(Math.random() * (4000)) + 2000 + 6000
+            //await Hotdeal.FMK(test=false,channels=noticeChannel2)
+            //await Thread.sleep(random_delay)
             await Hotdeal.PPU(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
         }
         catch(e){
             botChannel.sendChat("Thread_Hotdeal error : " + e)
-            await Thread.sleep(10000)
+            await Thread.sleep(60000)
         }
     }
 }
