@@ -24,6 +24,7 @@ Thread.Thread_UOSP1 = async function Thread_UOSP1(){
             await Thread.sleep(10000)
             await UOSP.UOSP2()
             await Thread.sleep(10000)
+            time_UOSP1 = new Time()
         }
         catch(e){
             botChannel.sendChat("Thread_fast error : " + e)
@@ -46,6 +47,7 @@ Thread.Thread_UOSP25 = async function Thread_UOSP25(){
             await Thread.sleep(900000)
             await Renthome.SH(test=false,channels=noticeChannel2)
             await Thread.sleep(900000)
+            time_UOSP2 = new Time()
         }
         catch(e){
             botChannel.sendChat("Thread_slow error : " + e)
@@ -140,6 +142,8 @@ Thread.Thread_dept = async function Thread_dept(){
             try{await UOSP.admin_parsing(test=false,channels=noticeChannel,headless=true,dept="ADMIN",dept_link="https://biz.uos.ac.kr/korNotice/list.do?list_id=20008N2&epTicket=LOG",dept_name="경영학부")}catch(e){}
             await Thread.sleep(dept_time)
 
+            time_dept = new Time()
+
             dept_count = dept_count + 1
 
             if(dept_count == 20){
@@ -170,6 +174,7 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal(){
             await Thread.sleep(random_delay)
             await Hotdeal.PPU(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
+            time_Hotdeal = new Time()
         }
         catch(e){
             botChannel.sendChat("Thread_Hotdeal error : " + e)

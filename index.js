@@ -67,6 +67,19 @@ CLIENT.on('chat', async(data, channel) => {
             start = 0
         }
 
+        if(new Time() - time_UOSP1() > 0.5*3600*1000){
+            Thread.Thread_UOSP1()
+        }
+        if(new Time() - time_UOSP2() > 3*3600*1000){
+            Thread.Thread_UOSP25()
+        }
+        if(new Time() - time_UOSPdept() > 6*3600*1000){
+            Thread.Thread_dept()
+        }
+        if(new Time() - time_Hotdeal() > 0.5*3600*1000){
+            Thread.Thread_Hotdeal()
+        }
+
         global.CH = channel
 
         const sender = data.getSenderInfo(channel);
