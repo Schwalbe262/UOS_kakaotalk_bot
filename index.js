@@ -37,6 +37,10 @@ const channel_params = {
 	botMakeChannelId : "18284842349082092" // 시립대 봇제작방(newest)
 }
 
+global.Thread_UOSP1 = new Date()
+global.Thread_UOSP2 = new Date()
+global.Thread_dept = new Date()
+global.Thread_Hotdeal = new Date()
 
 // 슈알이시
 const Admin = [208049747,219226517,22698467]
