@@ -169,9 +169,9 @@ Thread.Thread_Hotdeal = async function Thread_Hotdeal(){
 
     while(1){
         try{
-            let random_delay = Math.floor(Math.random() * (8000)) + 4000
-            //await Hotdeal.FMK(test=false,channels=noticeChannel2)
-            //await Thread.sleep(random_delay)
+            let random_delay = Math.floor(Math.random() * (10000)) + 5000
+            await Hotdeal.FMK(test=false,channels=noticeChannel2)
+            await Thread.sleep(random_delay)
             await Hotdeal.PPU(test=false,channels=noticeChannel2)
             await Thread.sleep(random_delay)
             global.time_Hotdeal = new Date()
